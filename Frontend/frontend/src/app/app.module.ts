@@ -17,6 +17,7 @@ import { CartComponent } from './cart/cart.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { MyOrderComponent } from './my-order/my-order.component';
+import { MyOrderDetailsComponent } from './my-order-details/my-order-details.component';
 
 
 
@@ -33,7 +34,8 @@ import { MyOrderComponent } from './my-order/my-order.component';
     CartComponent,
     FooterComponent,
     ContactusComponent,
-    MyOrderComponent
+    MyOrderComponent,
+    MyOrderDetailsComponent
    
   ],
   imports: [

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICart } from './cart';
+import { IOrder } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class CartService {
 
   emptyCart(userId: string) {
     return this.http.delete(this.url + "/deleteAllByUser/" + userId)
+  }
+
+  order(order: IOrder) {
+    return this.http.post("http://localhost:8080/order/add", order);
   }
 }

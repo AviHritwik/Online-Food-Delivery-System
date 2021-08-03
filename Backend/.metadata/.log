@@ -2947,3 +2947,36 @@ java.lang.InterruptedException
 
 !ENTRY Activator 1 0 2021-08-03 14:24:13.015
 !MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:24:56.425
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:24:57.024
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:45:11.929
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:45:12.515
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:46:52.684
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY Activator 1 0 2021-08-03 15:46:53.303
+!MESSAGE Has main method computation for project 'ofds'
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-08-03 17:50:03.328
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PsIgFGBz
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-08-03 17:50:03.329
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.PsIgFGBz
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-08-03 17:50:03.329
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-08-03 17:50:03.330
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.PsIgFGBz => OK
+
+!ENTRY org.eclipse.ui 2 2 2021-08-03 17:50:03.800
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)

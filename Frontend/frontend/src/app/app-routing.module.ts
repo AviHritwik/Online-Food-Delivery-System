@@ -9,8 +9,7 @@ import { FoodComponent } from './food/food.component';
 import { SignupComponent } from './signup/signup.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { MyOrderComponent } from './my-order/my-order.component';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { MyOrderDetailsComponent } from './my-order-details/my-order-details.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -21,7 +20,8 @@ const routes: Routes = [
   {path: 'signup',component:SignupComponent},
   {path: 'admin-food',component:FoodComponent},
   { path: 'contactus', component: ContactusComponent },
-  { path: 'myorder', component: MyOrderComponent }
+  { path: 'myorder', component: MyOrderComponent },
+  { path: 'orderdetails/:id', component: MyOrderDetailsComponent }
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { Order } from '../order';
+import { IOrder } from '../order';
 import { OrderService } from '../order.service';
 import { FoodService } from '../food.service';
 import { IFood } from '../food';
@@ -28,7 +28,7 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  fnBuy(id:any)
+  /*fnBuy(id:any)
   {
     alert(id);
     if(localStorage.getItem('customer')==null)
@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit {
     console.log("Going to place an order as below");
     console.log(order);
     this.os.placeOrder(order).subscribe(data=>console.log(data));
-  }
+  }*/
 
   fnAddToCart(f:any)
   {

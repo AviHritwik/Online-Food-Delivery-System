@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ICart } from '../cart';
+import { IOrder } from '../order';
 
 @Component({
   selector: 'app-cart',
@@ -87,6 +88,27 @@ export class CartComponent implements OnInit {
         });
         this.fnCalTotal();
       }
+    })
+  }
+
+  fnBuyNow = () => {
+    let dishList: string[];
+    let dishes: string;
+    dishList = this.cartItems.map(cartItem => { return cartItem.dishName });
+    dishes = dishList.toString();
+    let d = new Date();
+    console.log()
+    let order: IOrder = {
+      userId : this.customer.userId,
+      dishes: dishes,
+      price: this.total,
+      orderDate : d.toDateString()
+    }
+    this.cartService.order(order).subscribe((data) => {
+      console.log(data)
+      if (data == true)
+        this.fnEmptyCart()
+        this.router.navigate(["/","myorder"])
     })
   }
 

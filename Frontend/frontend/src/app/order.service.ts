@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IOrder } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,9 @@ export class OrderService {
   {
     return this.http.get(this.url);
   }
-  findOrderById(id:any)
+  findOrderById(id: any)
   {
-    return this.http.get(this.url+"/"+id);
+    return this.http.get(this.url+"/get/"+id);
   }
   findOrdersByCustomer(id:any)
   {

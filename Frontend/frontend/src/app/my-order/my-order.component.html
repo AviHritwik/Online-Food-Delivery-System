@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row row-cols-2 " style="margin : 10px">
-    <div class="col" *ngFor="let order of orders">
-      <div class="card text-center">
+    <div class="col" *ngFor="let order of orders" >
+      <div class="card text-center" [routerLink]="['/orderdetails/', order.orderId]">
         <div class="card-header">
           Order ID : {{order.orderId}}
         </div>

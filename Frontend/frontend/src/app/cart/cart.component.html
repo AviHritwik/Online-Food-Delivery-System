@@ -4,7 +4,7 @@
     <div class="card-header">
       <h4>Your Cart</h4>
     </div>
-    <div class="card-body" *ngIf="cartNotEmpty">
+    <div class="card-body" *ngIf="cartNotEmpty" >
       <table class="table align-middle table-bordered">
         <thead>
           <tr>
@@ -26,8 +26,7 @@
             <!--<td><input type="button" value="Remove" (click)="fnRemove(c.id)"></td>-->
           </tr>
           <tr class="table-success">
-            <td>Total</td>
-            <td></td>
+            <td colspan="2">Total</td>
             <td>{{total}}</td>
             <td style=" margin:auto"><button type="button" class="btn btn-danger" (click)="fnEmptyCart()">Empty Cart</button></td>
           </tr>
@@ -35,7 +34,7 @@
           </tr>
         </tbody>
       </table>
-      <a href="#" class="btn btn-success">Buy Now</a>
+      <a class="btn btn-success" (click)="fnBuyNow()">Buy Now</a>
     </div>
     <div *ngIf="cartEmpty">
       <div class="card text-center">

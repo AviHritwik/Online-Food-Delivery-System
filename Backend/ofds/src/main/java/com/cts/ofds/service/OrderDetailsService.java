@@ -1,0 +1,128 @@
+package com.cts.ofds.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+import com.cts.ofds.dao.OrderDetailsDaoImpl;
+import com.cts.ofds.model.OrderDetails;
+
+@Service
+public class OrderDetailsService {
+	
+	@Autowired
+	OrderDetailsDaoImpl orderDao;
+	@Autowired
+	CartService cartService;
+
+	/**
+	 * Get All Order 
+	 * Argument : None
+	 * Return : List<Order> - Containing all the Order in DB
+	 */
+	public List<OrderDetails> getAll()
+	{
+		try{
+			return orderDao.list();
+		}
+		catch(DataAccessException ex) {
+			return new ArrayList<OrderDetails>();
+		}	
+	
+	}
+	
+	/**
+	 * Get Order by Order ID
+	 * Argument : Order Id
+	 * Return : Optional<Order> - order details(if available) or Null
+	 */
+	public Optional<OrderDetails> get(int id){
+		try{
+			return orderDao.get(id);
+		}
+		catch(DataAccessException ex) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Get Order by user Id
+	 * Argument : User Id
+	 * Return : List<OrderDetails> - List of all orders associated to user
+	 */
+	public List<OrderDetails> getByUserId(String userId)
+	{
+		try{
+			return orderDao.getByUserId(userId);
+		}
+		catch(DataAccessException ex) {
+			return new ArrayList<OrderDetails>();
+		}	
+	}
+	
+	/**
+	 * Add Order
+	 * Argument : Order Object 
+	 * Return : Boolean response for success or failure
+	 */
+	public boolean add(OrderDetails orderDetails)
+	{
+		int response = 0;
+		
+		try {
+			response = orderDao.add(orderDetails);
+			//cartService.deleteAllByUserId(orderDetails.getUserId());
+		}
+		catch(DataAccessException ex){
+			response = 0;
+		}
+		if(response == 0 )
+			return false;
+		else
+			return true;
+	}
+	
+	/**
+	 * Delete Order
+	 * Argument : Order Id
+	 * Return : Boolean Response for failure or success
+	 */
+	public boolean delete(int id)
+	{
+		int response = 0;
+		try {
+			response = orderDao.delete(id);
+		}
+		catch(DataAccessException ex){
+			response = 0;
+		}
+		if(response == 0 )
+			return false;
+		else
+			return true;
+	}
+	
+	/**
+	 * Update Order Details
+	 * Argument : Order object, Order Id
+	 * Return : Boolean response for success or failure
+	 */
+	public boolean update(OrderDetails orderDetails,int id)
+	{
+		int response = 0;
+		try {
+			response = orderDao.update(orderDetails,id);
+		}
+		catch(DataAccessException ex){
+			response = 0;
+		}
+		if(response == 0 )
+			return false;
+		else
+			return true;
+	}
+		
+	
+}

@@ -1,0 +1,54 @@
+create table dish(
+create table dish(
+dishId int primary key auto_increment ,
+dishNauserme varchar(70) ,
+description varchar(200), 
+type varchar(20) ,
+price decimal(20,2)
+);
+
+create table orderdetails(
+orderId int primary key auto_increment,
+userId varchar(50) ,
+orderDate varchar(10), 
+dishes varchar(500), 
+price decimal(20,2)
+);
+
+create table user(
+userId varchar(50) Primary Key, 
+name varchar(50) ,
+password varchar(25), 
+role varchar(10), 
+age integer
+);
+
+create table cart(
+cartId int Primary Key auto_increment, 
+userId varchar(50), 
+dishId int ,
+dishName varchar(70) ,
+price decimal(20,2),
+quantity int
+);
+
+
+
+INSERT INTO USER VALUES ("user2","USER2","ABC123","user",20);
+INSERT INTO USER VALUES ("admin1","ADMIN","ABC123","admin",20);
+
+select * from cart;
+delete from cart where cartId = 5;
+insert into cart(userId,dishId,dishName,price,quantity) values ("user1",8,"Burger",50.00,3);
+
+
+delete from dish where dishId= '8';
+
+insert into dish (dishName,description,type,price) values ("Burger","Burger is a food, typically considered a sandwich, consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun.","Fast Food",50);
+insert into dish (dishName,description,type,price) values ("Pizza","Pizza is an Italian dish consisting of a usually round, flattened base of leavened wheat-based dough topped with different items.","Italian",200);
+
+insert into orderdetails (userId,orderDate,dishes,price) value ("user1","09/11/2020","Pasta,Mozito",200);
+
+update cart set  quantity=2 where cartId= 2;
+
+update cart set quantity = 5 where dishId = 8 and userId = "user1";

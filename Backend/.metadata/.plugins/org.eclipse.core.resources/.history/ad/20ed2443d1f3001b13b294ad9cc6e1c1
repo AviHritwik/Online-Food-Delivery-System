@@ -1,0 +1,49 @@
+package com.cts.ofds.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cts.ofds.model.Cart;
+import com.cts.ofds.model.CartBody;
+import com.cts.ofds.model.Dish;
+import com.cts.ofds.service.CartService;
+
+@RestController
+@RequestMapping("/cart")
+public class CartController {
+	
+	@Autowired
+	CartService cartService;
+	
+	@GetMapping("/getAllByUser/{id}")
+	public List<Cart> getAllByUser(@PathVariable("id") String userId){
+		return cartService.getAllByUserId(userId);
+	}
+	
+	@PostMapping("/add")
+	public boolean add(@RequestBody CartBody cartBody)
+	{
+		Dish dish = new Dish(cartBody.getDishId(),cartBody.getDishName(),cartBody.getPrice(),cartBody.getDescription(),cartBody.getType());
+		Cart cart = new Cart(cartBody.getUserId(),dish);
+		return cartService.add(cart);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public boolean delete(@PathVariable("id") int id) {
+		return cartService.delete(id);
+	}
+	
+	@DeleteMapping("/deleteAllByUser/{userId}")
+	public boolean deleteAllByUser(@PathVariable("userId") String UserId) {
+		return cartService.deleteAllByUserId(UserId);
+	}
+	
+}

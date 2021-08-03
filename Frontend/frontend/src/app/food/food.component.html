@@ -1,36 +1,97 @@
-
-<form [formGroup]="foodForm" class="container-fluid">
-    Id: <input type="number" formControlName="id" class="form-control">
-    Name: <input type="text" formControlName="name" class="form-control">
-    <!-- Category: <select formControlName="category" class="form-control">
-        <option value="">Select...</option>
-        <option *ngFor="let c of categories" [value]="c">{{c | titlecase}}</option>
-    </select> -->
-    Category: <input type="text" name="" id="" formControlName="category" list="categories" class="form-control">
-    <datalist id="categories">
-        <option *ngFor="let c of categories" [value]="c">
-    </datalist>
-    Price: <input type="number" formControlName="price" class="form-control">
-    <br>
-    <input type="button" value="Add" class="btn btn-success" (click)="fnAdd()">&nbsp;
-    <input type="button" value="Modify" class="btn btn-warning" (click)="fnModify()">&nbsp;
-    <input type="button" value="Delete" class="btn btn-danger" (click)="fnRemove()">&nbsp;
-    
+<form *ngIf="adding" [formGroup]="foodForm" class="container-fluid row g-3">
+  <div class="col-md-6">
+    <label for="name" class="form-label">Name:</label>
+    <input id="name" type="text" formControlName="dishName" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="visually-hidden" for="type">Category</label>
+    <select class="form-control" formControlName="type" id="type">
+      <option value="Starter" selected>Starter</option>
+      <option value="Main Course">Main Course</option>
+      <option value="Dessert">Desert</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="price" class="form-label">Price:</label>
+    <input id="price" type="number" formControlName="price" class="form-control">
+  </div>
+  <div class="col-md-12">
+    <label for="description" class="form-label">description:</label>
+    <input id="description" type="text" formControlName="description" class="form-control">
+  </div>
+  <br>
+  <div class="col-md-12" style="margin:10px;">
+    <button type="submit" class="btn btn-success" (click)="fnAdd()">Add Dish</button>&nbsp;
+  </div>
+  
 </form>
+
 <br>
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let f of foods">
-            <td>{{f.id}}</td>
-            <td>{{f.name}}</td>
-            <td>{{f.category}}</td>
-            <td>{{f.price}}</td>
-        </tr>
-    </tbody>
+<table class="table table-bordered table-hover" style="text-align :center">
+  <thead>
+    <tr>
+      <th class="alert-info" colspan="6"><h4>Admin Page</h4></th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th colspan="2">
+      <button class="btn btn-success" (click)="fnAdding()">Add Dish</button>&nbsp;
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let f of foods">
+    <tr>
+      <td>{{f.dishId}}</td>
+      <td>{{f.dishName}}</td>
+      <td>{{f.type}}</td>
+      <td>{{f.price}}</td>
+      <td>
+        <button class="btn btn-warning" (click)="fnModifying(f.dishId)">Modify</button>&nbsp;
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="fnRemove(f.dishId)">Delete</button>&nbsp;
+      </td>
+    </tr>
+    <tr *ngIf="f.modifying">
+      <td colspan="6">
+        <form [formGroup]="modifyForm">
+          <div><h5>Modifying : {{f.dishName}}</h5></div>
+          <div class="row">
+            <div class="col">
+              Description
+            </div>
+            <div class="col">
+              Price
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col">
+              <input type="text" class="form-control" formControlName="description" [value]="f.description" aria-label="First name" autofocus>
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" formControlName="price" [value]="f.price" aria-label="Last name">
+            </div>
+          </div>
+          <div class="row" style="margin:10px">
+            <div class="col">
+              <button class="btn btn-success" type="submit" (click)="fnModify(f)">Confirm</button>&nbsp;
+            </div>
+          </div>
+</form>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="alert-info" colspan="6">
+        <button class="btn btn-success" (click)="fnAdding()">Add Dish</button>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+  
 </table>
+

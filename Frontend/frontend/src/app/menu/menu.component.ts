@@ -1,4 +1,6 @@
+
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -10,8 +12,9 @@ export class MenuComponent implements OnInit, DoCheck {
   status: string = 'login';
   loggedIn: boolean = false;
   loggedOut: boolean = true;
+  notAdmin: boolean = true;
   userName!: String;
-  constructor(private cs:CustomerService) { }
+  constructor(private cs: CustomerService, private router: Router) { }
 
   ngDoCheck(): void {
     this.cs.getStatus().subscribe(data=>{      
@@ -21,6 +24,7 @@ export class MenuComponent implements OnInit, DoCheck {
         this.status = "login";
         this.loggedIn = false;
         this.loggedOut = true;
+        this.notAdmin = true;
         // console.log("data is null");
       }else
       {
@@ -28,10 +32,12 @@ export class MenuComponent implements OnInit, DoCheck {
         this.loggedIn = true;
         this.loggedOut = false;
         let str = localStorage.getItem('customer');
-       
+        this.notAdmin = true;
         if (str != null) {
           var customer: any | null = JSON.parse(str);
           this.userName = customer.name;
+          if (customer.role == "admin")
+            this.notAdmin = false;
         }
         // console.log("data is not not not null");
       }
@@ -39,6 +45,14 @@ export class MenuComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
+  }
+
+  brandClick() {
+    if (this.notAdmin)
+      this.router.navigate(['/home'])
+    else
+      return;
+      
   }
 
 }

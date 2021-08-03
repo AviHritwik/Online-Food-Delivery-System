@@ -4,9 +4,8 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\app",
-    "\\frontend\\src\\app\\signup",
-    "\\frontend\\src\\assets"
+    "\\frontend\\src\\app\\login"
   ],
-  "SelectedNode": "\\frontend\\src\\app\\signup\\customer.ts",
+  "SelectedNode": "\\frontend\\src\\app\\login\\login.component.html",
   "PreviewInSolutionExplorer": false
 }

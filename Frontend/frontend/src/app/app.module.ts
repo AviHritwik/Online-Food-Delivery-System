@@ -18,6 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { MyOrderDetailsComponent } from './my-order-details/my-order-details.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -35,7 +37,9 @@ import { MyOrderDetailsComponent } from './my-order-details/my-order-details.com
     FooterComponent,
     ContactusComponent,
     MyOrderComponent,
-    MyOrderDetailsComponent
+    MyOrderDetailsComponent,
+    PaymentComponent,
+    ErrorComponent
    
   ],
   imports: [

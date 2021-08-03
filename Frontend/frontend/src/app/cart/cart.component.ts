@@ -106,9 +106,12 @@ export class CartComponent implements OnInit {
     }
     this.cartService.order(order).subscribe((data) => {
       console.log(data)
-      if (data == true)
+      if (data == true) {
+        localStorage.setItem('order', JSON.stringify(order));
         this.fnEmptyCart()
-        this.router.navigate(["/","myorder"])
+        this.router.navigate(["/", "payment"])
+      }
+
     })
   }
 

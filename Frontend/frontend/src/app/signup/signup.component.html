@@ -1,10 +1,18 @@
 <form [formGroup]="signupForm" class="container-fluid">
-  Id: <input type="number" formControlName="id" class="form-control" required >
-  First Name: <input type="text" formControlName="firstName" class="form-control" required >
-  Last Name: <input type="text" formControlName="lastName" class="form-control">
-  Age: <input type="number" formControlName="lastName" class="form-control" required >
-  Password: <input type="password" formControlName="password" class="form-control" required >
-  Confirm Password: <input type="text" formControlName="cpassword" class="form-control" required >
+  User Id: <input type="text" id="userId" formControlName="userId" class="form-control" minlength="4" required>
+  <!--<div *ngIf="userId.invalid && (userId.dirty || userId.touched)"
+       class="alert alert-danger">
+         <div *ngIf="userId.errors?.required">
+             Name is required.
+         </div>
+         <div *ngIf="userId.errors?.minlength">
+             Name must be at least 4 characters long.
+         </div>
+  </div>-->
+  Name: <input type="text" formControlName="userName" class="form-control" minlength="4" required>
+  Age: <input type="number" formControlName="age" class="form-control" required>
+  Password: <input type="password" formControlName="password" class="form-control" minlength="8" required>
+  Confirm Password: <input type="text" formControlName="cPassword" class="form-control" required>
   <br>
   <input type="submit" value="Submit" class="btn btn-success" (click)="signup()">
   &nbsp;  <input type="reset" value="Reset" class="btn btn-warning">

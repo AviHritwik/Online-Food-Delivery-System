@@ -1,6 +1,6 @@
 export interface ICustomer {
   userId: string;
-  userName: string;
+  name: string;
   password: string;
   role: string;
   age: number;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IFood } from './food';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class FoodService {
 
   addFood(food:any)
   {
-    return this.http.post(this.url,food);
+    return this.http.post(this.url+"/add",food);
   }
   getAllFoods()
   {
@@ -29,12 +30,12 @@ export class FoodService {
   {
     return this.http.get(this.url+"/categories");
   }
-  modifyFood(food:any)
+  modifyFood(food: IFood)
   {
-    return this.http.put(this.url,food);
+    return this.http.put(this.url + "/update/" + food.dishId, food);
   }
   removeFood(id:any)
   {
-    return this.http.delete(this.url+"/"+id);
+    return this.http.delete(this.url+"/delete/"+id);
   }
 }

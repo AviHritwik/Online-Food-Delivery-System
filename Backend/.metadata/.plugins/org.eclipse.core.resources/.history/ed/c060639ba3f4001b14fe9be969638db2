@@ -10,7 +10,13 @@ public class Dish {
 	
 	public Dish() {
 	}
-	
+	public Dish(int dishId, String dishName, double price, String description, String type) {
+		this.dishId = dishId;
+		this.dishName = dishName;
+		this.price = price;
+		this.description = description;
+		this.type = type;
+	}
 	public Dish( String dishName, double price, String description, String type) {
 		this.dishName = dishName;
 		this.price = price;

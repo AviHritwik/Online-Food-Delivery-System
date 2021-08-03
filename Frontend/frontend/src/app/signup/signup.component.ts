@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ICustomer } from '../customer';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -11,11 +12,11 @@ export class SignupComponent implements OnInit {
   signupForm:any;
   constructor(private fb:FormBuilder, private cs:CustomerService) {
     this.signupForm=this.fb.group({
-      id:[],
-      firstName:[],
-      lastName:[],
+      userId:[],
+      userName: [],
+      age:[],
       password:[],
-      cpassword:[]
+      cPassword:[]
     });
    }
 
@@ -24,10 +25,17 @@ export class SignupComponent implements OnInit {
 
   signup()
   {
-    var customer=this.signupForm.value;
+    console.log(this.signupForm)
+    let user: ICustomer = {
+      userId: this.signupForm.controls['userId'].value,
+      name: this.signupForm.controls['userName'].value,
+      age: this.signupForm.controls['age'].value,
+      password: this.signupForm.controls['password'].value,
+      role:"user"
+    };
     console.log("We are sending the below object to rest api.");
-    console.log(customer);
-    this.cs.signup(customer).subscribe(data=>console.log(data));
+    console.log(user);
+    this.cs.signup(user).subscribe(data=>console.log(data));
   }
 
 }

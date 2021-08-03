@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ICustomer } from './customer';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,9 @@ export class CustomerService {
     }
     return this.http.post(this.url+"/login",user);
   }
-  signup(customer:any)
+  signup(customer: ICustomer)
   {
-    return this.http.post(this.url,customer);
+    return this.http.post(this.url+"/add",customer);
   }
   modifyCustomer(customer:any)
   {

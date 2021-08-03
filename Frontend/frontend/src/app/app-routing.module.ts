@@ -10,6 +10,8 @@ import { SignupComponent } from './signup/signup.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { MyOrderDetailsComponent } from './my-order-details/my-order-details.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -21,7 +23,11 @@ const routes: Routes = [
   {path: 'admin-food',component:FoodComponent},
   { path: 'contactus', component: ContactusComponent },
   { path: 'myorder', component: MyOrderComponent },
-  { path: 'orderdetails/:id', component: MyOrderDetailsComponent }
+  { path: 'payment', component: PaymentComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: 'orderdetails/:id', component: MyOrderDetailsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'error', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+<link rel="stylesheet" href=login.component.css>
+<form [formGroup]="loginForm" class="container-fluid">
+    Id: <input type="text" formControlName="id" class="form-control">
+    Password: <input type="password" formControlName="password" class="form-control"><br>
+    <div class="alert alert-danger" role="alert" *ngIf="failed">
+      Wrong user Id or Password
+    </div>
+    <input type="submit" value="Login" class="btn btn-success" (click)="fnLogin()">&nbsp;
+    <input type="reset" value="Reset" class="btn btn-warning" >
+    
+
+</form>
+<br>
+

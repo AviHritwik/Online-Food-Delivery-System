@@ -1,0 +1,36 @@
+
+<form [formGroup]="foodForm" class="container-fluid">
+    Id: <input type="number" formControlName="id" class="form-control">
+    Name: <input type="text" formControlName="name" class="form-control">
+    <!-- Category: <select formControlName="category" class="form-control">
+        <option value="">Select...</option>
+        <option *ngFor="let c of categories" [value]="c">{{c | titlecase}}</option>
+    </select> -->
+    Category: <input type="text" name="" id="" formControlName="category" list="categories" class="form-control">
+    <datalist id="categories">
+        <option *ngFor="let c of categories" [value]="c">
+    </datalist>
+    Price: <input type="number" formControlName="price" class="form-control">
+    <br>
+    <input type="button" value="Add" class="btn btn-success" (click)="fnAdd()">&nbsp;
+    <input type="button" value="Modify" class="btn btn-warning" (click)="fnModify()">&nbsp;
+    <input type="button" value="Delete" class="btn btn-danger" (click)="fnRemove()">&nbsp;
+    
+</form>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let f of foods">
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.category}}</td>
+            <td>{{f.price}}</td>
+        </tr>
+    </tbody>
+</table>

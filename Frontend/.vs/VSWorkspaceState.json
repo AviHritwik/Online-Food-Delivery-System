@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\app",
+    "\\frontend\\src\\app\\cart",
+    "\\frontend\\src\\app\\order",
+    "\\frontend\\src\\assets"
+  ],
+  "SelectedNode": "\\frontend\\src\\app\\order\\order.component.html",
+  "PreviewInSolutionExplorer": false
+}

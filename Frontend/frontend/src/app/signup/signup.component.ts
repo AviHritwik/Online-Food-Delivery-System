@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     this.signupForms = {
       userId: '',
       userName: '',
-      age: Number,
+      age: null,
       password: '',
       cPassword:''
     }
@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
     }
     else
       this.cPHasError = true;
+    if (cPassword === '')
+      this.cPHasError = true;
   }
-
 }

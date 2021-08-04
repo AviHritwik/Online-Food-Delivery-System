@@ -10,21 +10,24 @@ import { FoodService } from '../food.service';
 })
 export class FoodComponent implements OnInit {
   adding: boolean = false;
-  foodForm: any;
+  foodForms: any;
   modifyForm: any;
   foods:any;
-  categories:any;
   constructor(private fb:FormBuilder, private fs:FoodService) {
-    this.foodForm=this.fb.group({
-      dishName:[],
-      type:[],
-      price: [],
-      description : []
-    });
-    this.modifyForm = this.fb.group({
+    this.foodForms = {
+      dishName: '',
+      type: '',
+      price : null,
+      description : ''
+    }
+    /*this.modifyForm = this.fb.group({
       price: [],
       description: []
-    });
+    });*/
+    this.modifyForm = {
+      description: '',
+      price :null
+    }
    }
 
   ngOnInit(): void {
@@ -44,7 +47,7 @@ export class FoodComponent implements OnInit {
   }
 
   fnAdd() {
-    var food = this.foodForm.value;
+    var food = this.foodForms;
     console.log('sending the below object to rest api');
     console.log(food);
     this.fs.addFood(food).subscribe((data) => {
@@ -57,13 +60,15 @@ export class FoodComponent implements OnInit {
   }
   
   fnModifying(dishId: number) {
-    /*var food=this.foodForm.value;
-    console.log('sending the below object to rest api');
-    console.log(food);
-    this.fs.modifyFood(food).subscribe((data)=>{
-      console.log(data);
-    });*/
-    this.foods.filter((food: any) => food.dishId == dishId).forEach((food: any) => food.modifying = food.modifying? false : true)
+    this.foods.forEach((food: any) => {
+      if (food.dishId == dishId) {
+        food.modifying = food.modifying ? false : true
+        this.modifyForm.description = food.description
+        this.modifyForm.price=food.price
+      }
+      else
+        food.modifying=false
+    })
   }
   fnRemove(id : number){
     console.log("Removing food of id "+id);
@@ -75,14 +80,11 @@ export class FoodComponent implements OnInit {
   }
 
   fnModify(dish: IFood) {
-    dish.price = this.modifyForm.controls['price'].value;
-    dish.description = this.modifyForm.controls['description'].value;
+    console.log(this.modifyForm)
+    dish.price = this.modifyForm.price;
+    dish.description = this.modifyForm.description;
     this.fs.modifyFood(dish).subscribe((data) => {
       console.log(data);
     })
   }
-  /**
-   * var id=this.loginForm.controls['id'].value;
-    var pwd=this.loginForm.controls['password'].value;
-    */
 }

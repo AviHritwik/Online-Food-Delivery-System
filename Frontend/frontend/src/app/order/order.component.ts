@@ -10,8 +10,13 @@ import { IFood } from '../food';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
+
 export class OrderComponent implements OnInit {
-  foods:any;
+  foods : any;
+  filteredFood!:any;
+  searchedFood!: any;
+  search: string ="";
+  filter: string ="All";
   constructor(private fs:FoodService, private os:OrderService, private cartService:CartService) { }
 
   loggedIn: boolean = false;
@@ -24,31 +29,11 @@ export class OrderComponent implements OnInit {
       for (let food of this.foods) {
         food.img = "../../assets/images/" + food.dishName+".jpg"
       }
+      this.filteredFood = this.foods;
+      this.searchedFood = this.foods;
       console.log(this.foods)
     });
   }
-
-  /*fnBuy(id:any)
-  {
-    alert(id);
-    if(localStorage.getItem('customer')==null)
-    {
-      console.log("NOt logged in.")
-      return;
-    }
-    var str:any;
-    str=localStorage.getItem('customer');
-    var customer=JSON.parse(str);
-    var customer_id=customer.id;
-    var order=new Order();
-    order.orderDate=new Date();
-    order.foodId=id;
-    order.customerId=customer_id;
-    order.quantity=1;
-    console.log("Going to place an order as below");
-    console.log(order);
-    this.os.placeOrder(order).subscribe(data=>console.log(data));
-  }*/
 
   fnAddToCart(f:any)
   {
@@ -68,4 +53,50 @@ export class OrderComponent implements OnInit {
       console.log(data);
     });
   }
+
+  fnSearch(filter: string, search: string) {
+    search = search.toLowerCase();
+    if (filter === "All")
+      this.searchedFood = this.foods.filter((food: any) => {
+        let foodTemp: IFood = {
+          dishId: food.dishId,
+          dishName: food.dishName,
+          description: food.description,
+          type: food.type,
+          price: food.price
+        };
+        foodTemp.dishName = foodTemp.dishName.toLowerCase()
+        return foodTemp.dishName.includes(search)
+      })
+
+    else
+      this.searchedFood = this.foods.filter((food: any) => {
+        let foodTemp: IFood = {
+          dishId: food.dishId,
+          dishName: food.dishName,
+          description: food.description,
+          type: food.type,
+          price: food.price
+        };
+        foodTemp.dishName=foodTemp.dishName.toLowerCase()
+        return food.type === filter && foodTemp.dishName.includes(search)
+      })
+  }
+
+  fnFilter(filter: string) {
+    this.search = ""
+    if (filter === "All")
+      this.searchedFood = this.foods
+    else
+      this.searchedFood = this.foods.filter((food : any) => food.type === filter)
+  }
+}
+
+interface Food {
+  description: string;
+  dishId: number;
+  dishName: string;
+  img: string;
+  price: string;
+  type: string;
 }

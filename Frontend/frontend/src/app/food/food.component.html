@@ -1,33 +1,64 @@
-<form *ngIf="adding" [formGroup]="foodForm" class="container-fluid row g-3">
+<form *ngIf="adding" #dishAddForm="ngForm" class="container-fluid row g-3">
   <div class="col-md-6">
-    <label for="name" class="form-label">Name:</label>
-    <input id="name" type="text" formControlName="dishName" class="form-control">
+    <label for="name" class="form-label" style="float:left">Name</label>
+    <input id="name" type="text" class="form-control"
+           name="name" #name="ngModel" [(ngModel)]="foodForms.dishName"
+           [class.is-invalid]="name.touched && name.invalid"
+           required minlength="3">
+    <div class=" alert-danger col-12"
+         *ngIf="name.errors && (name.invalid && name.touched)" role="alert" style="margin:2px; padding:5px">
+      <span *ngIf="name.errors.required">Enter User ID</span>
+      <span *ngIf="name.errors.minlength">Atleast 4 character long</span>
+    </div>
   </div>
   <div class="col-md-4">
-    <label class="visually-hidden" for="type">Category</label>
-    <select class="form-control" formControlName="type" id="type">
+    <label class="visually-hidden" for="type" style="float:left">Category</label>
+    <select class="form-control" id="type"
+            name="type" #type="ngModel" [(ngModel)]="foodForms.type"
+            [class.is-invalid]="type.touched && type.invalid"
+            required>
       <option value="Starter" selected>Starter</option>
       <option value="Main Course">Main Course</option>
       <option value="Dessert">Desert</option>
     </select>
+    <div class=" alert-danger col-12"
+         [class.d-none]="type.valid || type.untouched" role="alert" style="margin:2px; padding:5px">
+      <span>Category Required</span>
+    </div>
   </div>
   <div class="col-md-2">
-    <label for="price" class="form-label">Price:</label>
-    <input id="price" type="number" formControlName="price" class="form-control">
+    <label for="price" class="form-label" style="float:left">Price</label>
+    <input id="price" type="number" class="form-control"
+           name="price" #price="ngModel" [(ngModel)]="foodForms.price"
+           [class.is-invalid]="price.touched && price.invalid"
+           required min="1">
+    <div class="alert-danger col-12"
+         *ngIf="price.errors && (price.invalid && price.touched)" role="alert" style="margin:2px; padding:5px">
+      <span *ngIf="price.errors.required">Required</span>
+      <span *ngIf="price.errors.min">Price > 0</span>
+    </div>
   </div>
   <div class="col-md-12">
-    <label for="description" class="form-label">description:</label>
-    <input id="description" type="text" formControlName="description" class="form-control">
+    <label for="description" class="form-label" style="float:left">Description</label>
+    <input id="description" type="text" class="form-control"
+           name="description" #description="ngModel" [(ngModel)]="foodForms.description"
+           [class.is-invalid]="description.touched && description.invalid"
+           required minlength="15">
+    <div class=" alert-danger col-12"
+         *ngIf="description.errors && (description.invalid && description.touched)" role="alert" style="margin:2px; padding:5px">
+      <span *ngIf="description.errors.required">Description required</span>
+      <span *ngIf="description.errors.minlength">Atleast 15 character long</span>
+    </div>
   </div>
   <br>
   <div class="col-md-12" style="margin:10px;">
-    <button type="submit" class="btn btn-success" (click)="fnAdd()">Add Dish</button>&nbsp;
+    <button type="submit" [disabled]="dishAddForm.invalid" class="btn btn-success" (click)="fnAdd()">Add Dish</button>&nbsp;
   </div>
   
 </form>
 
 <br>
-<table class="table table-bordered table-hover" style="text-align :center">
+<table class="table table-bordered table-hover col-md-12 col-sm-12" style="text-align :center">
   <thead>
     <tr>
       <th class="alert-info" colspan="6"><h4>Admin Page</h4></th>
@@ -57,38 +88,36 @@
     </tr>
     <tr *ngIf="f.modifying">
       <td colspan="6">
-        <form [formGroup]="modifyForm">
-          <div><h5>Modifying : {{f.dishName}}</h5></div>
-          <div class="row">
-            <div class="col">
-              Description
-            </div>
-            <div class="col">
-              Price
-            </div>
-          </div>
-          <div class="row">
-
-            <div class="col">
-              <input type="text" class="form-control" formControlName="description" [value]="f.description" aria-label="First name" autofocus>
-            </div>
-            <div class="col">
-              <input type="number" class="form-control" formControlName="price" [value]="f.price" aria-label="Last name">
+        <form #modify="ngForm" class="container-fluid row">
+          <div class="col-md-12"><h5>Modifying : {{f.dishName}}</h5></div>
+          <div class="col-md-10">
+            <label for="description" class="form-label" style="float:left">Description</label>
+            <input id="description" type="text" class="form-control"
+                   name="description" #description="ngModel" [(ngModel)]="modifyForm.description"
+                   [class.is-invalid]="description.touched && description.invalid"
+                   required minlength="15">
+            <div class=" alert-danger col-12"
+                 *ngIf="description.errors && (description.invalid && description.touched)" role="alert" style="margin:2px; padding:5px">
+              <span *ngIf="description.errors.required">Description required</span>
+              <span *ngIf="description.errors.minlength">Atleast 15 character long</span>
             </div>
           </div>
-          <div class="row" style="margin:10px">
-            <div class="col">
-              <button class="btn btn-success" type="submit" (click)="fnModify(f)">Confirm</button>&nbsp;
+            <div class="col-md-2">
+              <label for="price" class="form-label" style="float:left">Price</label>
+              <input id="price" type="number" class="form-control"
+                     name="price" #price="ngModel" [(ngModel)]="modifyForm.price"
+                     [class.is-invalid]="price.touched && price.invalid"
+                     required min="1">
+              <div class="alert-danger col-12"
+                   *ngIf="price.errors && (price.invalid && price.touched)" role="alert" style="margin:2px; padding:5px">
+                <span *ngIf="price.errors.required">Required</span>
+                <span *ngIf="price.errors.min">Price > 0</span>
+              </div>
             </div>
-          </div>
-</form>
-      </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td class="alert-info" colspan="6">
-        <button class="btn btn-success" (click)="fnAdding()">Add Dish</button>&nbsp;
+            <div class="col" style="float:right; margin:10px">
+              <button class="btn btn-success" type="submit" [disabled]="modify.invalid" (click)="fnModify(f)">Confirm</button>&nbsp;
+            </div>
+        </form>
       </td>
     </tr>
   </tbody>

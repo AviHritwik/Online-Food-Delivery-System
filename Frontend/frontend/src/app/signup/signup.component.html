@@ -1,72 +1,83 @@
-<div class="container-fluid" style="margin:10px">
-  <form #signupForm="ngForm" class="container-fluid">
-    <div class="alert alert-danger col-12" role="alert" *ngIf="userTaken">
-      UserId Registered : Choose another ID
+<div class=" row justify-content-md-center" style=" padding : 15px; background-image:url(../../assets/images/Pizza.jpg);">
+  <div id="main" class="card text-center col-md-6 col-sm-12" style="padding: 0; margin:15px">
+    <div class="card-header">
+      Sign Up
     </div>
-    <div class="col-12">
-      <label for="userId" class="form-label" style="float:left">User Id</label>
-      <input type="text" id="userId" class="form-control"
-             #userId="ngModel" name="userId" [(ngModel)]="signupForms.userId"
-             required minlength="4"
-             [class.is-invalid]="userId.touched && userId.invalid">
-      <div class=" alert-danger col-12"
-           *ngIf="userId.errors && (userId.invalid && userId.touched)" role="alert" style="margin:2px; padding:5px">
-        <span *ngIf="userId.errors.required">Enter User ID</span>
-        <span *ngIf="userId.errors.minlength">Atleast 4 character long</span>
-      </div>
+    <div class="card-body">
+      <form #signupForm="ngForm" class="container-fluid">
+        <div class="alert alert-danger col-12" role="alert" *ngIf="userTaken">
+          UserId Registered : Choose another ID
+        </div>
+        <div class="col-12">
+          <label for="userId" class="form-label" style="float:left">User Id</label>
+          <input type="text" id="userId" class="form-control"
+                 #userId="ngModel" name="userId" [(ngModel)]="signupForms.userId"
+                 required minlength="4"
+                 [class.is-invalid]="userId.touched && userId.invalid">
+          <div class=" alert-danger col-12"
+               *ngIf="userId.errors && (userId.invalid && userId.touched)" role="alert" style="margin:2px; padding:5px">
+            <span *ngIf="userId.errors.required">Enter User ID</span>
+            <span *ngIf="userId.errors.minlength">Atleast 4 character long</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="userName" class="form-label" style="float:left">Name</label>
+          <input type="text" class="form-control"
+                 name="userName" #userName="ngModel" [(ngModel)]="signupForms.userName"
+                 [class.is-invalid]="userName.touched && userName.invalid"
+                 minlength="4" required>
+          <div class=" alert-danger col-12"
+               *ngIf="userName.errors && (userName.invalid && userName.touched)" role="alert" style="margin:2px; padding:5px">
+            <span *ngIf="userName.errors.required">Enter Name</span>
+            <span *ngIf="userName.errors.minlength">Atleast 4 character long</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="age" class="form-label" style="float:left">Age</label>
+          <input type="number" class="form-control"
+                 name="age" #age="ngModel" [(ngModel)]="signupForms.age"
+                 [class.is-invalid]="age.touched && age.invalid"
+                 required min="6">
+          <div class="alert-danger col-12"
+               *ngIf="age.errors && (age.invalid && age.touched)" role="alert" style="margin:2px; padding:5px">
+            <span *ngIf="age.errors.required">Age is required</span>
+            <span *ngIf="age.errors.min">Age should be greater than 6</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="password" class="form-label" style="float:left">Password</label>
+          <input type="password" class="form-control"
+                 name="password" #password="ngModel" [(ngModel)]="signupForms.password"
+                 [class.is-invalid]="password.touched && password.invalid"
+                 minlength="6" required>
+          <div class=" alert-danger col-12"
+               *ngIf="password.errors && (password.invalid && password.touched)" role="alert" style="margin:2px; padding:5px">
+            <span *ngIf="password.errors.required">Enter Password</span>
+            <span *ngIf="password.errors.minlength">Atleast 6 character long</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="cPassword" class="form-label" style="float:left">Confirm Password</label>
+          <input type="text" class="form-control"
+                 name="cPassword" #cPassword="ngModel" [(ngModel)]="signupForms.cPassword"
+                 (change)="fnConfirmPassword(password.value,cPassword.value)" (blur)="fnConfirmPassword(password.value,cPassword.value)"
+                 [class.is-invalid]=" (cPHasError || cPassword.invalid) && cPassword.touched"
+                 required>
+          <div class=" alert-danger col-12"
+               [class.d-none]="cPassword.valid || cPassword.untouched" role="alert" style="margin:2px; padding:5px">
+            <span>Confirmation required</span>
+          </div>
+          <div class=" alert-danger col-12"
+               [class.d-none]="!cPHasError " role="alert" style="margin:2px; padding:5px">
+            <span>Password not Matching!!</span>
+          </div>
+        </div>
+        <div class="col-md-12" style="margin:10px;">
+          <button type="submit" [disabled]="signupForm.form.invalid || cPHasError" class="btn btn-success" (click)="signup()">Sign Up</button>&nbsp;
+          <input type="reset" value="Reset" class="btn btn-warning" />
+        </div>
+      </form>
     </div>
-    <div class="col-12">
-      <label for="userName" class="form-label" style="float:left">Name</label>
-      <input type="text" class="form-control"
-             name="userName" #userName="ngModel" [(ngModel)]="signupForms.userName"
-             minlength="4" required>
-      <div class=" alert-danger col-12"
-           *ngIf="userName.errors && (userName.invalid && userName.touched)" role="alert" style="margin:2px; padding:5px">
-        <span *ngIf="userName.errors.required">Enter Name</span>
-        <span *ngIf="userName.errors.minlength">Atleast 4 character long</span>
-      </div>
-    </div>
-    <div class="col-12">
-      <label for="age" class="form-label" style="float:left">Age</label>
-      <input type="number" class="form-control"
-             name="age" #age="ngModel" [(ngModel)]="signupForms.age"
-             required min="6">
-      <div class="alert-danger col-12"
-           *ngIf="age.errors && (age.invalid && age.touched)" role="alert" style="margin:2px; padding:5px">
-        <span *ngIf="age.errors.required">Age is required</span>
-        <span *ngIf="age.errors.min">Age should be greater than 6</span>
-      </div>
-    </div>
-    <div class="col-12">
-      <label for="password" class="form-label" style="float:left">Password</label>
-      <input type="password" class="form-control"
-             name="password" #password="ngModel" [(ngModel)]="signupForms.password"
-             minlength="6" required>
-      <div class=" alert-danger col-12"
-           *ngIf="password.errors && (password.invalid && password.touched)" role="alert" style="margin:2px; padding:5px">
-        <span *ngIf="password.errors.required">Enter Password</span>
-        <span *ngIf="password.errors.minlength">Atleast 8 character long</span>
-      </div>
-    </div>
-    <div class="col-12">
-      <label for="cPassword" class="form-label" style="float:left">Confirm Password</label>
-      <input type="text" class="form-control"
-             name="cPassword" #cPassword="ngModel" [(ngModel)]="signupForms.cPassword"
-             (change)="fnConfirmPassword(password.value,cPassword.value)" (blur)="fnConfirmPassword(password.value,cPassword.value)"
-             required>
-      <div class=" alert-danger col-12"
-           [class.d-none]="cPassword.valid || cPassword.untouched" role="alert" style="margin:2px; padding:5px">
-        <span>Confirmation required</span>
-      </div>
-      <div class=" alert-danger col-12"
-           [class.d-none]="!cPHasError " role="alert" style="margin:2px; padding:5px">
-        <span>Password not Matching!!</span>
-      </div>
-    </div>
-    <div class="col-md-12" style="margin:10px;">
-      <button type="submit" [disabled]="signupForm.form.invalid || cPHasError" class="btn btn-success" (click)="signup()">Sign Up</button>&nbsp;
-      <input type="reset" value="Reset" class="btn btn-warning" />
-    </div>
-  </form>
-</div>
+  </div>
 
+</div>

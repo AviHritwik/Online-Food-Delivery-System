@@ -1,41 +1,43 @@
-<div class="container-fluid">
-
-  <form #loginForm="ngForm" class="container-fluid row">
-    <div class="alert alert-danger col-12" role="alert" *ngIf="failed">
-      Wrong user Id or Password
+<div class=" row justify-content-md-center" style=" padding : 15px; background-image:url(../../assets/images/Pizza.jpg);">
+  <div id="main" class="card text-center col-md-6 col-sm-12" style="padding: 0; margin:15px">
+    <div class="card-header" style="color:white; background-color : black" >
+      Log In
     </div>
-    <div class="col-12">
-      <label for="userId" class="form-label" style="float:left">User Id</label>
-      <input type="text" class="form-control"
-             #userId="ngModel" name="userId" [(ngModel)]="loginForms.id"
-             [class.is-invalid]="userId.invalid && userId.touched"
-             required>
-      <div class=" alert-danger col-12"
-           [class.d-none]="userId.valid || userId.untouched" role="alert" style="margin:2px; padding:5px">
-        <span>Enter User ID</span>
-      </div>
+    <div class="card-body" >
+      <form #loginForm="ngForm" class="container-fluid row">
+        <div class="alert alert-danger col-12" role="alert" *ngIf="failed">
+          Wrong user Id or Password
+        </div>
+        <div class="col-12">
+          <label for="userId" class="form-label" style="float:left">User Id</label>
+          <input type="text" class="form-control"
+                 #userId="ngModel" name="userId" [(ngModel)]="loginForms.id"
+                 [class.is-invalid]="userId.invalid && userId.touched"
+                 required>
+          <div class=" alert-danger col-12"
+               [class.d-none]="userId.valid || userId.untouched" role="alert" style="margin:2px; padding:5px">
+            <span>Enter User ID</span>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="password" class="form-label" style="float:left">Password</label>
+          <input type="password" class="form-control"
+                 #password="ngModel" name="password" [(ngModel)]="loginForms.password"
+                 [class.is-invalid]="password.invalid && password.touched"
+                 required>
+          <div class=" alert-danger col-12"
+               [class.d-none]="password.valid || password.untouched" role="alert" style="margin:2px; padding:5px">
+            <span>Enter Password</span>
+          </div>
+        </div>
+
+        <div class="col-md-12" style="margin:10px; margin-top:50px">
+          <button type="submit" [disabled]="loginForm.form.invalid" class="btn btn-success" (click)="fnLogin()">Login</button>&nbsp;
+          <input type="reset" value="Reset" class="btn btn-warning" />
+        </div>
+      </form>
     </div>
-
-    <div class="col-12">
-      <label for="password" class="form-label" style="float:left">Password</label>
-      <input type="password" class="form-control"
-             #password="ngModel" name="password" [(ngModel)]="loginForms.password"
-             [class.is-invalid]="password.invalid && password.touched"
-             required>
-      <div class=" alert-danger col-12"
-           [class.d-none]="password.valid || password.untouched" role="alert" style="margin:2px; padding:5px">
-        <span>Enter Password</span>
-      </div>
-    </div>
-    <div></div>
-
-    <div class="col-md-12" style="margin:10px">
-      <button type="submit" [disabled]="loginForm.form.invalid" class="btn btn-success" (click)="fnLogin()">Login</button>&nbsp;
-      <input type="reset" value="Reset" class="btn btn-warning" />
-    </div>
-
-
-  </form>
+  </div>
 
 </div>
-

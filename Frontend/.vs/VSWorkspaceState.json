@@ -4,9 +4,11 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\app",
-    "\\frontend\\src\\app\\food",
-    "\\frontend\\src\\app\\footer"
+    "\\frontend\\src\\app\\cart",
+    "\\frontend\\src\\app\\order",
+    "\\frontend\\src\\assets",
+    "\\frontend\\src\\assets\\images"
   ],
-  "SelectedNode": "\\frontend\\src\\app\\food",
+  "SelectedNode": "\\frontend\\src\\app\\cart\\cart.component.ts",
   "PreviewInSolutionExplorer": false
 }

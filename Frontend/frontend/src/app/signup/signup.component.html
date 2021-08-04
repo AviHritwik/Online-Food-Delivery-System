@@ -33,15 +33,15 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="age" class="form-label" style="float:left">Age</label>
+          <label for="contactNumber" class="form-label" style="float:left">Contact Number</label>
           <input type="number" class="form-control"
-                 name="age" #age="ngModel" [(ngModel)]="signupForms.age"
-                 [class.is-invalid]="age.touched && age.invalid"
-                 required min="6">
+                 name="contactNumber" #contactNumber="ngModel" [(ngModel)]="signupForms.contactNumber"
+                 [class.is-invalid]="contactNumber.touched && contactNumber.invalid"
+                 required pattern="^[6-9]\d{9}$">
           <div class="alert-danger col-12"
-               *ngIf="age.errors && (age.invalid && age.touched)" role="alert" style="margin:2px; padding:5px">
-            <span *ngIf="age.errors.required">Age is required</span>
-            <span *ngIf="age.errors.min">Age should be greater than 6</span>
+               *ngIf="contactNumber.errors && (contactNumber.invalid && contactNumber.touched)" role="alert" style="margin:2px; padding:5px">
+            <span *ngIf="contactNumber.errors.required">Contact Number is required</span>
+            <span *ngIf="contactNumber.errors.pattern">Should contain 10 digit and first char should be between 6-9</span>
           </div>
         </div>
         <div class="col-12">
@@ -49,11 +49,11 @@
           <input type="password" class="form-control"
                  name="password" #password="ngModel" [(ngModel)]="signupForms.password"
                  [class.is-invalid]="password.touched && password.invalid"
-                 minlength="6" required>
+                 minlength="8" required>
           <div class=" alert-danger col-12"
                *ngIf="password.errors && (password.invalid && password.touched)" role="alert" style="margin:2px; padding:5px">
             <span *ngIf="password.errors.required">Enter Password</span>
-            <span *ngIf="password.errors.minlength">Atleast 6 character long</span>
+            <span *ngIf="password.errors.minlength">Atleast 8 character long</span>
           </div>
         </div>
         <div class="col-12">

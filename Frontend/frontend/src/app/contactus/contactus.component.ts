@@ -12,4 +12,8 @@ export class ContactusComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fnClick() {
+    alert("Thank You !! We will reach you shortly.")
+  }
+
 }

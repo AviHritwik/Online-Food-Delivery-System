@@ -31,7 +31,6 @@ export class OrderComponent implements OnInit {
       }
       this.filteredFood = this.foods;
       this.searchedFood = this.foods;
-      console.log(this.foods)
     });
   }
 

@@ -46,16 +46,16 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int update(User t, String id)  throws DataAccessException
 	{
-		String sql = "update user set name = ? , password = ? , role = ? ,contactNumber = ? where userId = ?";
-		int response = jdbc.update(sql, t.getName(),t.getPassword(),t.getRole(),t.getContactNumber(),id);
+		String sql = "update user set name = ? , password = ? , role = ? ,age = ? where userId = ?";
+		int response = jdbc.update(sql, t.getName(),t.getPassword(),t.getRole(),t.getAge(),id);
 		return response;
 	}
 
 	@Override
 	public int add(User t)  throws DataAccessException
 	{
-		String sql = "insert into user(userId,name,password,role,contactNumber) values ( ?,?,?,?,?)";
-		int response = jdbc.update(sql, t.getUserId(),t.getName(),t.getPassword(),t.getRole(),t.getContactNumber());
+		String sql = "insert into user(userId,name,password,role,age) values ( ?,?,?,?,?)";
+		int response = jdbc.update(sql, t.getUserId(),t.getName(),t.getPassword(),t.getRole(),t.getAge());
 		return response;
 	}
 

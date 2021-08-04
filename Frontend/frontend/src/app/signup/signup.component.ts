@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     this.signupForms = {
       userId: '',
       userName: '',
-      age: null,
+      contactNumber: null,
       password: '',
       cPassword:''
     }
@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
     let user: ICustomer = {
       userId: this.signupForms.userId,
       name: this.signupForms.userName,
-      age: this.signupForms.age,
+      contactNumber: this.signupForms.contactNumber,
       password: this.signupForms.password,
       role:"user"
     };

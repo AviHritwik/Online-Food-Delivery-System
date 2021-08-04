@@ -3,5 +3,5 @@ export interface ICustomer {
   name: string;
   password: string;
   role: string;
-  age: number;
+  contactNumber: number;
 }

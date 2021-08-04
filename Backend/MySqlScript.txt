@@ -30,3 +30,5 @@ dishName varchar(70) ,
 price decimal(20,2),
 quantity int
 );
+
+INSERT INTO USER VALUES ("admin1","ADMIN","ABC123456","admin",8539057973);

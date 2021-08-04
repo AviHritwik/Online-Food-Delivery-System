@@ -16,7 +16,8 @@ export class OrderComponent implements OnInit {
   filteredFood!:any;
   searchedFood!: any;
   search: string ="";
-  filter: string ="All";
+  filter: string = "All";
+  searchEmpty: boolean = false;
   constructor(private fs:FoodService, private os:OrderService, private cartService:CartService) { }
 
   loggedIn: boolean = false;
@@ -80,6 +81,7 @@ export class OrderComponent implements OnInit {
         foodTemp.dishName=foodTemp.dishName.toLowerCase()
         return food.type === filter && foodTemp.dishName.includes(search)
       })
+    this.searchEmpty = (this.searchedFood.length == 0)
   }
 
   fnFilter(filter: string) {
@@ -87,7 +89,8 @@ export class OrderComponent implements OnInit {
     if (filter === "All")
       this.searchedFood = this.foods
     else
-      this.searchedFood = this.foods.filter((food : any) => food.type === filter)
+      this.searchedFood = this.foods.filter((food: any) => food.type === filter)
+    this.searchEmpty = (this.searchedFood.length == 0)
   }
 }
 

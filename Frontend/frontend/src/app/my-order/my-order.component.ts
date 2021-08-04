@@ -14,6 +14,7 @@ export class MyOrderComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getByUser().subscribe((data) => {
       this.orders = data;
+      this.orders=this.orders.slice().reverse()
       for (let order of this.orders) {
         let dishes = order.dishes.split(",")
         order.dishList = dishes

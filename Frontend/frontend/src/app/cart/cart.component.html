@@ -37,16 +37,14 @@
       <a class="btn btn-success" (click)="fnBuyNow()">Buy Now</a>
     </div>
     <div *ngIf="cartEmpty">
-      <div class="card text-center">
-        <div class="card-header">
-          Your Cart
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Nothing Here</h5>
-          <p class="card-text">Hurry Up!! And Order Some Sizzling Hot Food.</p>
-        </div>
-        <div class="card-footer text-muted">
-          Stay Safe, Stay Home. Let us take care of Food
+      <div id="main">
+        <div class="fof">
+          <h1>Your Cart Is Empty  </h1>
+          
+          <h2>Hurry UP!!! Order Something</h2>
+          <button class='btn btn-success'
+                  style='width:auto'
+                  [routerLink]="['/myorder']">Go To Menu</button>
         </div>
       </div>
     </div>

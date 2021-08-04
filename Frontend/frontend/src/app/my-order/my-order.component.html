@@ -1,20 +1,18 @@
 <div class="container">
-  <div class="row row-cols-2 " style="margin : 10px">
-    <div class="col" *ngFor="let order of orders" >
-      <div class="card text-center" [routerLink]="['/orderdetails/', order.orderId]">
-        <div class="card-header">
-          Order ID : {{order.orderId}}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Dishes </h5>
-          <ul class="list-group" *ngFor="let dish of order.dishList">
-            <li class="list-group-item">{{dish}}</li>
-          </ul>
-        </div>
-        <div class="card-footer">
-          Price : {{order.price}}
-        </div>
-      </div>
-    </div>
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order Id</th>
+        <th scope="col">Date</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody  *ngFor="let order of orders">
+      <tr [routerLink]="['/orderdetails/', order.orderId]">
+        <th scope="row">{{order.orderId}}</th>
+        <td>{{order.orderDate}}</td>
+        <td>{{order.price}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

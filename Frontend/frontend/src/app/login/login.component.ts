@@ -9,14 +9,14 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm:any;
+  loginForms:any;
   str: any;
   failed: boolean = false;
   constructor(private fb:FormBuilder, private cs:CustomerService, private router:Router) { 
-    this.loginForm=this.fb.group({
-      id:[],
-      password:[]
-    });
+    this.loginForms={
+      id: '',
+      password : ''
+    }
   }
 
   ngOnInit(): void {
@@ -29,9 +29,12 @@ export class LoginComponent implements OnInit {
   // }
   fnLogin()
   {    
-    var id=this.loginForm.controls['id'].value;
-    var pwd=this.loginForm.controls['password'].value;
+    //var id=this.loginForm.controls['id'].value;
+    //var pwd=this.loginForm.controls['password'].value;
     // alert(id+" : "+pwd);
+    var id = this.loginForms.id;
+    var pwd = this.loginForms.password;
+    console.log(this.loginForms)
     this.cs.findCustomerByIdPassword(id, pwd).subscribe(data=>{
       console.log(data);
 
@@ -40,7 +43,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('customer',JSON.stringify(data));
         this.str=localStorage.getItem("customer");
         var customer=JSON.parse(this.str);
-        alert(customer.role)
         
         if(customer.role=="user")
         {
@@ -57,6 +59,9 @@ export class LoginComponent implements OnInit {
       {
         localStorage.removeItem('customer');
         this.failed = true;
+        setTimeout(() => {
+          this.failed = false;
+        }, 1000);
       }
       this.cs.getStatus();
     });

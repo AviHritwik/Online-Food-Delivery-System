@@ -4,8 +4,9 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\app",
-    "\\frontend\\src\\app\\login"
+    "\\frontend\\src\\app\\food",
+    "\\frontend\\src\\app\\footer"
   ],
-  "SelectedNode": "\\frontend\\src\\app\\login\\login.component.html",
+  "SelectedNode": "\\frontend\\src\\app\\food",
   "PreviewInSolutionExplorer": false
 }

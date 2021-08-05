@@ -1,0 +1,31 @@
+package com.cts.ofds;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.LocalServerPort;
+
+import com.cts.ofds.service.UserService;
+
+public class UserControllerIntegrationTests {
+	
+	@LocalServerPort
+    private int port;
+
+	@Autowired
+	UserService userService;
+	
+	private String getRootUrl() {
+        return "http://localhost:" + port;
+    }
+	
+	@Test
+    public void contextLoads() {
+			
+    }
+	
+	@Test
+	public void addUserTest() {
+		User user = new User("TESTUSER101","Just For Testing","Password ForTesting Objeect",8005855340,"user");
+	}
+	
+}

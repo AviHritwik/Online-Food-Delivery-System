@@ -9,6 +9,6 @@
     "\\frontend\\src\\assets",
     "\\frontend\\src\\assets\\images"
   ],
-  "SelectedNode": "\\frontend\\src\\app\\signup\\signup.component.html",
+  "SelectedNode": "\\frontend\\src\\app\\signup\\signup.component.ts",
   "PreviewInSolutionExplorer": false
 }

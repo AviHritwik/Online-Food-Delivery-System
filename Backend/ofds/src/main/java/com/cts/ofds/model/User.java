@@ -7,7 +7,6 @@ public class User {
 	private long contactNumber;
 	private String role;
 	public User() {
-		super();
 	}
 	public User(String userId, String name, String password, long contactNumber, String role) {
 		this.userId = userId;

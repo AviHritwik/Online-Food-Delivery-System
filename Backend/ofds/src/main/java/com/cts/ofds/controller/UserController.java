@@ -34,20 +34,20 @@ public class UserController {
 	
 	@GetMapping("/get/{userId}")
 	@ResponseBody
-	public User get(@PathVariable("id") String userId)
+	public User get(@PathVariable("userId") String userId)
 	{
 		return userService.get(userId).orElse(null);
 	}
 	
 	@PutMapping("/update/{userId}")
 	@ResponseBody
-	public boolean update(@PathVariable("id") String userId, @RequestBody User user) {
+	public boolean update(@PathVariable("userId") String userId, @RequestBody User user) {
 		return userService.update(user, userId);
 	}
 	
 	@DeleteMapping("/delete/{userId}")
 	@ResponseBody
-	public boolean delete(@PathVariable("id") String userId) {
+	public boolean delete(@PathVariable("userId") String userId) {
 		return userService.delete(userId);
 	}
 	

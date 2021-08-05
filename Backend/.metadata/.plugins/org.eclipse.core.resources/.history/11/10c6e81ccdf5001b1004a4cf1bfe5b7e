@@ -1,0 +1,51 @@
+package com.cts.ofds;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+import com.cts.ofds.model.User;
+import com.cts.ofds.service.UserService;
+
+public class UserControllerIntegrationTests {
+	
+	RestTemplate restTemplate = new RestTemplate();
+
+	@Autowired
+	UserService userService;
+	
+	private String getRootUrl() {
+        return "http://localhost:8080/" ;
+    }
+	
+	@Test
+    public void contextLoads() {
+			
+    }
+	
+	@Test
+	public void addUserTest() throws URISyntaxException {
+		String link = this.getRootUrl()+"/user/add";
+		URI uri = new URI(link);
+		User user = new User("TESTUSER101","Just For Testing","Password ForTesting Objeect",8005,"user");
+		ResponseEntity<Boolean> response = this.restTemplate.postForEntity(uri, user, boolean.class);
+		assertThat(response.getBody()).isEqualTo(true);
+	}
+	
+	@Test
+    public void testGetUserById() {
+        User user = restTemplate.getForObject(this.getRootUrl() + "/user/get/user1", User.class);
+        assertNotNull(user);
+    }
+	
+}

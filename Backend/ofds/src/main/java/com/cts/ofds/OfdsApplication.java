@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import com.cts.ofds.dao.CartDaoImpl;
 import com.cts.ofds.dao.DishDaoImpl;
@@ -35,7 +37,6 @@ public class OfdsApplication {
 		OfdsApplication.dishDaoImpl=dishDaoImpl;
 	}
 	*/
-	
 	private static UserService userService;
 	private static OrderDetailsService orderService;
 	private static DishService dishService;
@@ -169,6 +170,13 @@ public class OfdsApplication {
 		response= orderService.delete(2);
 		System.out.println("Row Deletion Response : " + response);
 		*/
+		
+	}
+	
+	@Bean
+	public RestTemplate getRestTemplate()
+	{
+		return new RestTemplate();
 	}
 
 }

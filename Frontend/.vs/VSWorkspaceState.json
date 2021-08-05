@@ -5,10 +5,10 @@
     "\\frontend\\src",
     "\\frontend\\src\\app",
     "\\frontend\\src\\app\\cart",
-    "\\frontend\\src\\app\\order",
+    "\\frontend\\src\\app\\signup",
     "\\frontend\\src\\assets",
     "\\frontend\\src\\assets\\images"
   ],
-  "SelectedNode": "\\frontend\\src\\app\\cart\\cart.component.ts",
+  "SelectedNode": "\\frontend\\src\\app\\signup\\signup.component.html",
   "PreviewInSolutionExplorer": false
 }

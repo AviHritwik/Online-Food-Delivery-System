@@ -61,14 +61,10 @@
           <input type="text" class="form-control"
                  name="cPassword" #cPassword="ngModel" [(ngModel)]="signupForms.cPassword"
                  (change)="fnConfirmPassword(password.value,cPassword.value)" (blur)="fnConfirmPassword(password.value,cPassword.value)"
-                 [class.is-invalid]=" (cPHasError || cPassword.invalid) && cPassword.touched"
+                 [class.is-invalid]=" cPHasError && cPassword.touched"
                  required>
           <div class=" alert-danger col-12"
-               [class.d-none]="cPassword.valid || cPassword.untouched" role="alert" style="margin:2px; padding:5px">
-            <span>Confirmation required</span>
-          </div>
-          <div class=" alert-danger col-12"
-               [class.d-none]="!cPHasError " role="alert" style="margin:2px; padding:5px">
+               [class.d-none]="!cPHasError || cPassword.untouched" role="alert" style="margin:2px; padding:5px">
             <span>Password not Matching!!</span>
           </div>
         </div>

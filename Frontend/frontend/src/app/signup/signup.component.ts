@@ -11,7 +11,7 @@ import { CustomerService } from '../customer.service';
 })
 export class SignupComponent implements OnInit {
   signupForms: any;
-  cPHasError = false;
+  cPHasError = true;
   userTaken = false;
   constructor(private cs: CustomerService, private router: Router) {
     
